@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hibiscus Bouquet Surprise</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Hidden SVG template for the Hibiscus so we don't repeat the code -->
+    <svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <g id="hibiscus-flower">
+                <g stroke="rgba(0,0,0,0.15)" stroke-width="0.5">
+                    <ellipse cy="-28" rx="22" ry="36" fill="var(--petal)" transform="rotate(0)" />
+                    <ellipse cy="-28" rx="22" ry="36" fill="var(--petal)" transform="rotate(72)" />
+                    <ellipse cy="-28" rx="22" ry="36" fill="var(--petal)" transform="rotate(144)" />
+                    <ellipse cy="-28" rx="22" ry="36" fill="var(--petal)" transform="rotate(216)" />
+                    <ellipse cy="-28" rx="22" ry="36" fill="var(--petal)" transform="rotate(288)" />
+                </g>
+                <circle cx="0" cy="0" r="10" fill="var(--core)" />
+                <path d="M0,0 Q10,-20 25,-40" stroke="var(--core)" stroke-width="3" fill="none" />
+                <circle cx="25" cy="-40" r="3" fill="gold" />
+                <circle cx="20" cy="-42" r="2" fill="gold" />
+                <circle cx="28" cy="-35" r="2" fill="gold" />
+                <circle cx="30" cy="-42" r="2" fill="gold" />
+                <circle cx="22" cy="-36" r="2" fill="gold" />
+            </g>
+        </defs>
+    </svg>
+
+    <button id="surpriseBtn" aria-label="Click for a beautiful floral surprise!">Click mo :!</button>
+
+    <div id="bouquet-container">
+        <div id="text-surprise" class="hidden-text">Hisbiscus for you, my Graceselyn <33 !!</div>
+
+                <!-- The Stems and Leaves -->
+                <svg class="stems" viewBox="0 0 400 500" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M200,500 Q180,350 80,100" stroke="#228B22" stroke-width="6" fill="none" class="stem"
+                        style="--stem-delay: 0s" />
+                    <path d="M200,500 Q220,350 320,125" stroke="#228B22" stroke-width="6" fill="none" class="stem"
+                        style="--stem-delay: 0.2s" />
+                    <path d="M200,500 Q150,400 100,300" stroke="#228B22" stroke-width="6" fill="none" class="stem"
+                        style="--stem-delay: 0.4s" />
+                    <path d="M200,500 Q250,400 300,275" stroke="#228B22" stroke-width="6" fill="none" class="stem"
+                        style="--stem-delay: 0.1s" />
+                    <path d="M200,500 Q200,350 200,150" stroke="#006400" stroke-width="8" fill="none" class="stem"
+                        style="--stem-delay: 0.6s" />
+
+                    <path d="M200,350 Q150,320 120,350 Q150,380 200,350" fill="#228B22" class="leaf" />
+                    <path d="M200,400 Q250,370 280,400 Q250,430 200,400" fill="#006400" class="leaf" />
+                    <path d="M185,250 Q130,220 110,250 Q140,280 185,250" fill="#228B22" class="leaf" />
+                    <path d="M210,300 Q260,270 290,300 Q260,330 210,300" fill="#32CD32" class="leaf" />
+                </svg>
+
+                <!-- Flowers are now spawned dynamically via script.js -->
+        </div>
+
+        <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,170 @@
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at center, #2c3e50, #1a252c);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+}
+
+/* Button Styles */
+#surpriseBtn {
+    padding: 15px 40px;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(45deg, #ff4e50, #f9d423);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s, box-shadow 0.2s, opacity 0.3s;
+    z-index: 100;
+}
+
+#surpriseBtn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+#surpriseBtn:active {
+    transform: scale(0.95);
+}
+
+.hide {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+}
+
+/* Bouquet Container */
+#bouquet-container {
+    position: relative;
+    width: 400px;
+    height: 500px;
+    display: none;
+}
+
+.hidden-text {
+    position: absolute;
+    top: -50px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-size: 32px;
+    font-weight: bold;
+    opacity: 0;
+    transform: translateY(20px);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    z-index: 20;
+}
+
+/* Stem Animations */
+.stem {
+    stroke-dasharray: 600;
+    stroke-dashoffset: 600;
+}
+
+.blooming .stem {
+    animation: growStem 1.2s ease-out forwards;
+    animation-delay: var(--stem-delay);
+}
+
+@keyframes growStem {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+.leaf {
+    opacity: 0;
+    transform: scale(0.5);
+    transform-origin: center;
+}
+
+.blooming .leaf {
+    animation: fadeLeaf 1s ease-in forwards;
+    animation-delay: 1.2s;
+}
+
+@keyframes fadeLeaf {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Flower Animations */
+.flower-wrapper {
+    position: absolute;
+    transform: translate(-50%, -50%) scale(0) rotate(-30deg);
+    opacity: 0;
+}
+
+.blooming .flower-wrapper {
+    animation: bloom 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    animation-delay: var(--delay);
+}
+
+@keyframes bloom {
+    0% {
+        transform: translate(-50%, -50%) scale(0) rotate(-30deg);
+        opacity: 0;
+    }
+
+    70% {
+        transform: translate(-50%, -50%) scale(1.1) rotate(10deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+/* Special Animation for the Highlighted Red Flower */
+.red-highlight {
+    z-index: 10;
+}
+
+.blooming .red-highlight {
+    animation: bloom-red 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    animation-delay: var(--delay);
+}
+
+@keyframes bloom-red {
+    0% {
+        transform: translate(-50%, -50%) scale(0) rotate(45deg);
+        opacity: 0;
+        filter: drop-shadow(0 0 0 rgba(255, 0, 0, 0));
+    }
+
+    60% {
+        transform: translate(-50%, -50%) scale(1.3) rotate(-10deg);
+        opacity: 1;
+        filter: drop-shadow(0 0 10px rgba(255, 60, 60, 0.5));
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1.2) rotate(0deg);
+        opacity: 1;
+        filter: drop-shadow(0 0 35px rgba(255, 30, 30, 0.9));
+    }
+}
+
+.blooming .hidden-text {
+    animation: fadeText 1s ease-out forwards;
+    animation-delay: 2.5s;
+    /* Shows up right after the red flower finishes */
+}
+
+@keyframes fadeText {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
