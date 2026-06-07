@@ -82,15 +82,19 @@ function createSparkles(x, y) {
     }
 }
 
+let petalInterval;
+let fireflyInterval;
+
 // 4. Falling Petals Effect
 function createFallingPetals() {
     const colors = ['#ff1a1a', '#ffcc00', '#ff66a3', '#ff751a', '#9966ff'];
-    setInterval(() => {
+    petalInterval = setInterval(() => {
         if (!bouquetContainer.classList.contains('blooming')) return;
         
         const petal = document.createElement('div');
         petal.className = 'falling-petal animate-fall';
-        petal.style.left = Math.random() * 100 + 'vw';
+        const startX = Math.random() * 100;
+        petal.style.setProperty('--lx', startX + 'vw');
         petal.style.setProperty('--petal-color', colors[Math.floor(Math.random() * colors.length)]);
         petal.style.transform = `scale(${0.5 + Math.random()})`;
         
@@ -98,6 +102,96 @@ function createFallingPetals() {
         setTimeout(() => petal.remove(), 5000);
     }, 300);
 }
+
+// 5. Butterfly Effect
+function spawnButterflies() {
+    const colors = ['#ffcc00', '#ff99cc', '#99ffff'];
+    for (let i = 0; i < 3; i++) {
+        const b = document.createElement('div');
+        b.className = 'butterfly';
+        b.style.setProperty('--color', colors[i]);
+        
+        const startX = 150 + Math.random() * 100;
+        const startY = 150 + Math.random() * 100;
+        b.style.left = startX + 'px';
+        b.style.top = startY + 'px';
+        
+        b.innerHTML = `
+            <div class="wing left"></div>
+            <div class="wing right"></div>
+        `;
+        
+        bouquetContainer.appendChild(b);
+        animateButterfly(b);
+    }
+}
+
+function animateButterfly(el) {
+    let angle = Math.random() * Math.PI * 2;
+    function move() {
+        if (!bouquetContainer.classList.contains('blooming')) return;
+        angle += 0.02;
+        const x = Math.sin(angle) * 120 + 200;
+        const y = Math.cos(angle * 0.5) * 80 + 150;
+        el.style.left = x + 'px';
+        el.style.top = y + 'px';
+        el.style.transform = `rotate(${Math.sin(angle) * 20}deg)`;
+        requestAnimationFrame(move);
+    }
+    move();
+}
+
+// 7. Firefly Effect
+function spawnFireflies() {
+    fireflyInterval = setInterval(() => {
+        if (!bouquetContainer.classList.contains('blooming')) return;
+        
+        const f = document.createElement('div');
+        f.className = 'firefly';
+        f.style.left = Math.random() * 100 + 'vw';
+        f.style.top = Math.random() * 100 + 'vh';
+        
+        const dx = (Math.random() - 0.5) * 200 + 'px';
+        const dy = (Math.random() - 0.5) * 200 + 'px';
+        f.style.setProperty('--dx', dx);
+        f.style.setProperty('--dy', dy);
+        
+        f.style.animation = `fireflyMove ${4 + Math.random() * 4}s ease-in-out forwards`;
+        
+        document.body.appendChild(f);
+        setTimeout(() => f.remove(), 8000);
+    }, 400);
+}
+
+// 8. Replay Logic
+function resetMagic() {
+    // Clear Intervals
+    clearInterval(petalInterval);
+    clearInterval(fireflyInterval);
+    
+    // Remove dynamic elements
+    document.querySelectorAll('.flower-wrapper, .butterfly, .firefly, .falling-petal, .sparkle').forEach(el => el.remove());
+    
+    // Reset classes and styles
+    bouquetContainer.classList.remove('blooming');
+    bouquetContainer.style.display = 'none';
+    
+    const surpriseBtn = document.getElementById('surpriseBtn');
+    surpriseBtn.classList.remove('hide');
+    
+    document.getElementById('replayBtn').classList.remove('show');
+}
+
+document.getElementById('replayBtn').addEventListener('click', resetMagic);
+
+// 6. Interactive Parallax Logic
+document.addEventListener('mousemove', (e) => {
+    const x = (e.clientX / window.innerWidth) - 0.5;
+    const y = (e.clientY / window.innerHeight) - 0.5;
+    
+    document.documentElement.style.setProperty('--mx', x);
+    document.documentElement.style.setProperty('--my', y);
+});
 
 // Main Interaction
 document.getElementById('surpriseBtn').addEventListener('click', function () {
@@ -109,12 +203,21 @@ document.getElementById('surpriseBtn').addEventListener('click', function () {
     void bouquetContainer.offsetWidth;
     bouquetContainer.classList.add('blooming');
 
-    // Trigger sound and sparkles when the red flower blooms (approx 2s delay)
+    // Trigger sound and sparkles when the red flower blooms
     setTimeout(() => {
         playTwinkleSound();
-        createSparkles(200, 150); // Position of the red highlight flower
+        createSparkles(200, 150);
     }, 2000);
 
-    // Start falling petals
-    setTimeout(createFallingPetals, 2500);
+    // Start falling petals, butterflies, and fireflies
+    setTimeout(() => {
+        createFallingPetals();
+        spawnButterflies();
+        spawnFireflies();
+    }, 2500);
+    
+    // Show replay button after everything is done
+    setTimeout(() => {
+        document.getElementById('replayBtn').classList.add('show');
+    }, 5000);
 });
