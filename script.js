@@ -4,7 +4,12 @@ const flowerData = [
     { left: '320px', top: '125px', size: '90px', delay: '1.0s', core: '#99004d', petal: '#ff66a3' },
     { left: '100px', top: '300px', size: '95px', delay: '1.2s', core: '#992600', petal: '#ff751a' },
     { left: '300px', top: '275px', size: '80px', delay: '0.9s', core: '#330066', petal: '#9966ff' },
-    { left: '200px', top: '150px', size: '140px', delay: '2.0s', core: '#660000', petal: '#ff1a1a', isHighlight: true }
+    { left: '200px', top: '150px', size: '140px', delay: '2.0s', core: '#660000', petal: '#ff1a1a', isHighlight: true },
+    // New flowers
+    { left: '150px', top: '220px', size: '75px', delay: '1.4s', core: '#663300', petal: '#ff99cc' },
+    { left: '250px', top: '180px', size: '80px', delay: '1.6s', core: '#4d004d', petal: '#ffccff' },
+    { left: '130px', top: '150px', size: '70px', delay: '1.1s', core: '#994d00', petal: '#ffb366' },
+    { left: '270px', top: '320px', size: '85px', delay: '1.3s', core: '#4d4d00', petal: '#ffff99' }
 ];
 
 const bouquetContainer = document.getElementById('bouquet-container');
@@ -21,7 +26,7 @@ function spawnFlowers() {
         wrapper.style.setProperty('--delay', data.delay);
 
         wrapper.innerHTML = `
-            <svg viewBox="-60 -60 120 120" style="--core: ${data.core}; --petal: ${data.petal}; width:100%; height:100%;">
+            <svg viewBox="-75 -75 150 150" style="--core: ${data.core}; --petal: ${data.petal}; width:100%; height:100%;">
                 <use href="#hibiscus-flower" />
             </svg>
         `;

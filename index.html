@@ -35,25 +35,59 @@
     <button id="surpriseBtn" aria-label="Click for a beautiful floral surprise!">Click mo :!</button>
 
     <div id="bouquet-container">
-        <div id="text-surprise" class="hidden-text">Hisbiscus for you, my Graceselyn <33 !!</div>
+        <div id="text-surprise" class="hidden-text">Hisbiscus for you, my Graceselyn <33!! </div>
+
+                <!-- The Vase (Back Layer) -->
+                <svg class="vase back" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20,10 Q50,0 80,10 L85,100 Q50,120 15,100 Z" fill="rgba(255,255,255,0.1)" />
+                </svg>
 
                 <!-- The Stems and Leaves -->
                 <svg class="stems" viewBox="0 0 400 500" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M200,500 Q180,350 80,100" stroke="#228B22" stroke-width="6" fill="none" class="stem"
+                    <path d="M200,410 Q180,300 80,100" stroke="#228B22" stroke-width="6" fill="none" class="stem"
                         style="--stem-delay: 0s" />
-                    <path d="M200,500 Q220,350 320,125" stroke="#228B22" stroke-width="6" fill="none" class="stem"
+                    <path d="M200,410 Q220,300 320,125" stroke="#228B22" stroke-width="6" fill="none" class="stem"
                         style="--stem-delay: 0.2s" />
-                    <path d="M200,500 Q150,400 100,300" stroke="#228B22" stroke-width="6" fill="none" class="stem"
+                    <path d="M200,410 Q150,350 100,300" stroke="#228B22" stroke-width="6" fill="none" class="stem"
                         style="--stem-delay: 0.4s" />
-                    <path d="M200,500 Q250,400 300,275" stroke="#228B22" stroke-width="6" fill="none" class="stem"
+                    <path d="M200,410 Q250,350 300,275" stroke="#228B22" stroke-width="6" fill="none" class="stem"
                         style="--stem-delay: 0.1s" />
-                    <path d="M200,500 Q200,350 200,150" stroke="#006400" stroke-width="8" fill="none" class="stem"
+                    <path d="M200,410 Q200,300 200,150" stroke="#006400" stroke-width="8" fill="none" class="stem"
                         style="--stem-delay: 0.6s" />
+                    <!-- New Stems -->
+                    <path d="M200,410 Q170,300 150,220" stroke="#228B22" stroke-width="5" fill="none" class="stem"
+                        style="--stem-delay: 0.5s" />
+                    <path d="M200,410 Q230,300 250,180" stroke="#228B22" stroke-width="5" fill="none" class="stem"
+                        style="--stem-delay: 0.7s" />
+                    <path d="M200,410 Q180,250 130,150" stroke="#228B22" stroke-width="5" fill="none" class="stem"
+                        style="--stem-delay: 0.3s" />
+                    <path d="M200,410 Q220,350 270,320" stroke="#228B22" stroke-width="5" fill="none" class="stem"
+                        style="--stem-delay: 0.4s" />
 
-                    <path d="M200,350 Q150,320 120,350 Q150,380 200,350" fill="#228B22" class="leaf" />
-                    <path d="M200,400 Q250,370 280,400 Q250,430 200,400" fill="#006400" class="leaf" />
-                    <path d="M185,250 Q130,220 110,250 Q140,280 185,250" fill="#228B22" class="leaf" />
-                    <path d="M210,300 Q260,270 290,300 Q260,330 210,300" fill="#32CD32" class="leaf" />
+                    <!-- Higher leaf positions -->
+                    <path d="M200,280 Q160,260 130,290 Q160,320 200,280" fill="#228B22" class="leaf" />
+                    <path d="M200,300 Q240,280 270,310 Q240,340 200,300" fill="#006400" class="leaf" />
+                    <path d="M175,220 Q130,190 110,220 Q140,250 175,220" fill="#228B22" class="leaf" />
+                    <path d="M225,240 Q270,210 300,240 Q270,270 225,240" fill="#32CD32" class="leaf" />
+                </svg>
+
+                <!-- The Vase (Front Layer) -->
+                <svg class="vase front" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="vaseGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.3" />
+                            <stop offset="50%" style="stop-color:#ffffff;stop-opacity:0.1" />
+                            <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0.3" />
+                        </linearGradient>
+                    </defs>
+                    <!-- Vase Body with highlight -->
+                    <path d="M20,10 Q50,0 80,10 L85,100 Q50,120 15,100 Z" fill="url(#vaseGradient)"
+                        stroke="rgba(255,255,255,0.4)" stroke-width="2" />
+                    <!-- Water Level -->
+                    <path d="M22,60 Q50,55 78,60 L80,95 Q50,110 20,95 Z" fill="rgba(173, 216, 230, 0.3)" />
+                    <!-- Vase Rim -->
+                    <ellipse cx="50" cy="10" rx="30" ry="8" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.4)"
+                        stroke-width="1.5" />
                 </svg>
 
                 <!-- Flowers are now spawned dynamically via script.js -->
